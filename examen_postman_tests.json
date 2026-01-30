@@ -1,34 +1,196 @@
 {
 	"info": {
-		"name": "4V GYM FINAL API",
+		"name": "4V GYM - Examen Final",
+		"description": "Batería de pruebas completa para el API de 4V GYM cumpliendo estrictamente el YAML y el PDF del examen.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "GET Activities (Pagination & Filter)",
-			"request": {
-				"method": "GET",
-				"url": "http://localhost:8000/activities?type=Spinning&onlyfree=true&page=1&page_size=10&sort=date&order=desc"
-			}
-		},
-		{
-			"name": "GET Client Details (with Stats & Bookings)",
-			"request": {
-				"method": "GET",
-				"url": "http://localhost:8000/clients/1?with_statistics=true&with_bookings=true"
-			}
-		},
-		{
-			"name": "POST Create Booking",
-			"request": {
-				"method": "POST",
-				"header": [{"key": "Content-Type", "value": "application/json"}],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"activity_id\": 1,\n    \"client_id\": 1\n}"
+			"name": "Actividades",
+			"item": [
+				{
+					"name": "1. Listar todas las actividades",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/activities",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8000",
+							"path": ["activities"]
+						}
+					}
 				},
-				"url": "http://localhost:8000/bookings"
-			}
+				{
+					"name": "2. Filtrar por Tipo (Spinning)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/activities?type=Spinning",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8000",
+							"path": ["activities"],
+							"query": [
+								{ "key": "type", "value": "Spinning" }
+							]
+						}
+					}
+				},
+				{
+					"name": "3. Solo actividades con plazas (onlyfree)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/activities?onlyfree=true",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8000",
+							"path": ["activities"],
+							"query": [
+								{ "key": "onlyfree", "value": "true" }
+							]
+						}
+					}
+				},
+				{
+					"name": "4. Paginación y Ordenación Completa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/activities?type=BodyPump&onlyfree=true&page=1&page_size=5&sort=date&order=desc",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8000",
+							"path": ["activities"],
+							"query": [
+								{ "key": "type", "value": "BodyPump" },
+								{ "key": "onlyfree", "value": "true" },
+								{ "key": "page", "value": "1" },
+								{ "key": "page_size", "value": "5" },
+								{ "key": "sort", "value": "date" },
+								{ "key": "order", "value": "desc" }
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Reservas (Bookings)",
+			"item": [
+				{
+					"name": "1. Crear Reserva (Éxito)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"activity_id\": 2,\n    \"client_id\": 1\n}"
+						},
+						"url": "http://localhost:8000/bookings"
+					}
+				},
+				{
+					"name": "2. ERROR - Actividad Llena (Core id:3)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"activity_id\": 3,\n    \"client_id\": 1\n}"
+						},
+						"url": "http://localhost:8000/bookings"
+					}
+				},
+				{
+					"name": "3. ERROR - Cliente ya apuntado",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"activity_id\": 1,\n    \"client_id\": 1\n}"
+						},
+						"url": "http://localhost:8000/bookings"
+					}
+				}
+			]
+		},
+		{
+			"name": "Clientes y Estadísticas",
+			"item": [
+				{
+					"name": "1. Perfil de Cliente Básico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/clients/1"
+					}
+				},
+				{
+					"name": "2. Perfil con sus Reservas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/clients/1?with_bookings=true",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8000",
+							"path": ["clients", "1"],
+							"query": [
+								{ "key": "with_bookings", "value": "true" }
+							]
+						}
+					}
+				},
+				{
+					"name": "3. Perfil con Estadísticas (Agrupadas)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/clients/1?with_statistics=true",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8000",
+							"path": ["clients", "1"],
+							"query": [
+								{ "key": "with_statistics", "value": "true" }
+							]
+						}
+					}
+				},
+				{
+					"name": "4. Informe Completo (Reservas + Stats)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/clients/1?with_bookings=true&with_statistics=true",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8000",
+							"path": ["clients", "1"],
+							"query": [
+								{ "key": "with_bookings", "value": "true" },
+								{ "key": "with_statistics", "value": "true" }
+							]
+						}
+					}
+				}
+			]
 		}
 	]
 }
