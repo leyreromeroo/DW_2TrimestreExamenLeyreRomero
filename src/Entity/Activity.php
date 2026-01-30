@@ -6,8 +6,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: \App\Repository\ActivityRepository::class)]
 class Activity
 {
     #[ORM\Id, ORM\GeneratedValue, ORM\Column]
@@ -32,6 +33,7 @@ class Activity
 
     #[ORM\OneToMany(mappedBy: 'activity', targetEntity: Song::class, cascade: ['persist'])]
     #[Groups(['activity:read'])]
+    #[SerializedName('play_list')]
     private Collection $playList;
 
     #[ORM\OneToMany(mappedBy: 'activity', targetEntity: Booking::class)]
@@ -42,9 +44,10 @@ class Activity
         $this->bookings = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
+    #[Groups(['activity:read'])]
+    #[SerializedName('clients_signed')]
+    public function getClientsSigned(): int {
+        return $this->bookings->count();
     }
 
     public function getMaxParticipants(): ?int
@@ -153,10 +156,5 @@ class Activity
         }
 
         return $this;
-    }
-
-    #[Groups(['activity:read'])]
-    public function getClientsSigned(): int {
-        return $this->bookings->count();
     }
 }

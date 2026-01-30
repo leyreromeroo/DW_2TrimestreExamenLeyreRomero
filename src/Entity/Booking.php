@@ -4,8 +4,9 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: \App\Repository\BookingRepository::class)]
 class Booking
 {
     #[ORM\Id, ORM\GeneratedValue, ORM\Column]
@@ -51,6 +52,7 @@ class Booking
     }
 
     #[Groups(['booking:read'])]
+    #[SerializedName('client_id')]
     public function getClientId(): ?int {
         return $this->client?->getId();
     }

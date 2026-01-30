@@ -40,7 +40,6 @@ paths:
           required: false
           schema:
             type: string
-            default: BodyPump
             enum:
               - BodyPump
               - Spinning

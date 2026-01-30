@@ -6,8 +6,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: \App\Repository\ClientRepository::class)]
 class Client
 {
     #[ORM\Id, ORM\GeneratedValue, ORM\Column]
@@ -28,7 +29,22 @@ class Client
 
     #[ORM\OneToMany(mappedBy: 'client', targetEntity: Booking::class)]
     #[Groups(['client:read_bookings'])] // Controlamos con grupos si enviamos las reservas
+    #[SerializedName('activities_booked')]
     private Collection $bookings;
+
+    #[Groups(['client:read'])]
+    private ?array $activity_statistics = null;
+
+    public function getActivityStatistics(): ?array
+    {
+        return $this->activity_statistics;
+    }
+
+    public function setActivityStatistics(?array $activity_statistics): self
+    {
+        $this->activity_statistics = $activity_statistics;
+        return $this;
+    }
 
     public function __construct() {
         $this->bookings = new ArrayCollection();
