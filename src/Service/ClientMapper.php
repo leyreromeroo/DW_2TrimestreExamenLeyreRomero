@@ -17,7 +17,12 @@ class ClientMapper
             foreach ($client->getBookings() as $booking) {
                 $bookingsData[] = [
                     'id' => $booking->getId(),
-                    'activity' => $booking->getActivity(), // Symfony usará los grupos de la entidad Activity
+                    'activity' => [
+                        'id' => $booking->getActivity()->getId(),
+                        'type' => $booking->getActivity()->getType(),
+                        'date_start' => $booking->getActivity()->getDateStart(),
+                        'date_end' => $booking->getActivity()->getDateEnd(),
+                    ],
                     'client_id' => $client->getId()
                 ];
             }
