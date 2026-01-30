@@ -16,13 +16,9 @@
                         "url": {
                             "raw": "http://localhost:8000/activities",
                             "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
+                            "host": ["localhost"],
                             "port": "8000",
-                            "path": [
-                                "activities"
-                            ]
+                            "path": ["activities"]
                         }
                     }
                 },
@@ -34,18 +30,11 @@
                         "url": {
                             "raw": "http://localhost:8000/activities?type=Spinning",
                             "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
+                            "host": ["localhost"],
                             "port": "8000",
-                            "path": [
-                                "activities"
-                            ],
+                            "path": ["activities"],
                             "query": [
-                                {
-                                    "key": "type",
-                                    "value": "Spinning"
-                                }
+                                { "key": "type", "value": "Spinning" }
                             ]
                         }
                     }
@@ -58,18 +47,11 @@
                         "url": {
                             "raw": "http://localhost:8000/activities?onlyfree=true",
                             "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
+                            "host": ["localhost"],
                             "port": "8000",
-                            "path": [
-                                "activities"
-                            ],
+                            "path": ["activities"],
                             "query": [
-                                {
-                                    "key": "onlyfree",
-                                    "value": "true"
-                                }
+                                { "key": "onlyfree", "value": "true" }
                             ]
                         }
                     }
@@ -82,38 +64,16 @@
                         "url": {
                             "raw": "http://localhost:8000/activities?type=BodyPump&onlyfree=true&page=1&page_size=5&sort=date&order=desc",
                             "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
+                            "host": ["localhost"],
                             "port": "8000",
-                            "path": [
-                                "activities"
-                            ],
+                            "path": ["activities"],
                             "query": [
-                                {
-                                    "key": "type",
-                                    "value": "BodyPump"
-                                },
-                                {
-                                    "key": "onlyfree",
-                                    "value": "true"
-                                },
-                                {
-                                    "key": "page",
-                                    "value": "1"
-                                },
-                                {
-                                    "key": "page_size",
-                                    "value": "5"
-                                },
-                                {
-                                    "key": "sort",
-                                    "value": "date"
-                                },
-                                {
-                                    "key": "order",
-                                    "value": "desc"
-                                }
+                                { "key": "type", "value": "BodyPump" },
+                                { "key": "onlyfree", "value": "true" },
+                                { "key": "page", "value": "1" },
+                                { "key": "page_size", "value": "5" },
+                                { "key": "sort", "value": "date" },
+                                { "key": "order", "value": "desc" }
                             ]
                         }
                     }
@@ -128,14 +88,11 @@
                     "request": {
                         "method": "POST",
                         "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
+                            { "key": "Content-Type", "value": "application/json" }
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"activity_id\": 2,\n    \"client_id\": 2\n}"
+                            "raw": "{\n    \"activity_id\": 7,\n    \"client_id\": 3\n}"
                         },
                         "url": "http://localhost:8000/bookings"
                     }
@@ -145,10 +102,7 @@
                     "request": {
                         "method": "POST",
                         "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
+                            { "key": "Content-Type", "value": "application/json" }
                         ],
                         "body": {
                             "mode": "raw",
@@ -162,10 +116,7 @@
                     "request": {
                         "method": "POST",
                         "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
+                            { "key": "Content-Type", "value": "application/json" }
                         ],
                         "body": {
                             "mode": "raw",
@@ -175,16 +126,10 @@
                     }
                 },
                 {
-                    "name": "ERROR: Límite Semanal Standard (Paso 1)",
-                    "description": "Primera reserva de la semana para el usuario standard (ID:2)",
+                    "name": "4. ERROR - Límite Semanal Standard (Paso 1)",
                     "request": {
                         "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
+                        "header": [{ "key": "Content-Type", "value": "application/json" }],
                         "body": {
                             "mode": "raw",
                             "raw": "{\n    \"activity_id\": 1,\n    \"client_id\": 2\n}"
@@ -193,16 +138,10 @@
                     }
                 },
                 {
-                    "name": "ERROR: Límite Semanal Standard (Paso 2)",
-                    "description": "Segunda reserva de la semana para el usuario standard (ID:2)",
+                    "name": "5. ERROR - Límite Semanal Standard (Paso 2)",
                     "request": {
                         "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
+                        "header": [{ "key": "Content-Type", "value": "application/json" }],
                         "body": {
                             "mode": "raw",
                             "raw": "{\n    \"activity_id\": 2,\n    \"client_id\": 2\n}"
@@ -211,16 +150,10 @@
                     }
                 },
                 {
-                    "name": "ERROR: Límite Semanal Standard (EL BLOQUEO)",
-                    "description": "Tercera reserva en la misma semana. Aquí debe saltar el error 400 del repositorio.",
+                    "name": "6. ERROR - Límite Semanal Standard (EL BLOQUEO)",
                     "request": {
                         "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
+                        "header": [{ "key": "Content-Type", "value": "application/json" }],
                         "body": {
                             "mode": "raw",
                             "raw": "{\n    \"activity_id\": 5,\n    \"client_id\": 2\n}"
@@ -234,10 +167,9 @@
             "name": "Clientes y Estadísticas",
             "item": [
                 {
-                    "name": "1. Perfil de Cliente Básico",
+                    "name": "1. Perfil de Cliente",
                     "request": {
                         "method": "GET",
-                        "header": [],
                         "url": "http://localhost:8000/clients/1"
                     }
                 },
@@ -245,23 +177,14 @@
                     "name": "2. Perfil con sus Reservas",
                     "request": {
                         "method": "GET",
-                        "header": [],
                         "url": {
                             "raw": "http://localhost:8000/clients/1?with_bookings=true",
                             "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
+                            "host": ["localhost"],
                             "port": "8000",
-                            "path": [
-                                "clients",
-                                "1"
-                            ],
+                            "path": ["clients", "1"],
                             "query": [
-                                {
-                                    "key": "with_bookings",
-                                    "value": "true"
-                                }
+                                { "key": "with_bookings", "value": "true" }
                             ]
                         }
                     }
@@ -270,23 +193,14 @@
                     "name": "3. Perfil con Estadísticas (Agrupadas)",
                     "request": {
                         "method": "GET",
-                        "header": [],
                         "url": {
                             "raw": "http://localhost:8000/clients/1?with_statistics=true",
                             "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
+                            "host": ["localhost"],
                             "port": "8000",
-                            "path": [
-                                "clients",
-                                "1"
-                            ],
+                            "path": ["clients", "1"],
                             "query": [
-                                {
-                                    "key": "with_statistics",
-                                    "value": "true"
-                                }
+                                { "key": "with_statistics", "value": "true" }
                             ]
                         }
                     }
@@ -295,27 +209,15 @@
                     "name": "4. Informe Completo (Reservas + Stats)",
                     "request": {
                         "method": "GET",
-                        "header": [],
                         "url": {
                             "raw": "http://localhost:8000/clients/1?with_bookings=true&with_statistics=true",
                             "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
+                            "host": ["localhost"],
                             "port": "8000",
-                            "path": [
-                                "clients",
-                                "1"
-                            ],
+                            "path": ["clients", "1"],
                             "query": [
-                                {
-                                    "key": "with_bookings",
-                                    "value": "true"
-                                },
-                                {
-                                    "key": "with_statistics",
-                                    "value": "true"
-                                }
+                                { "key": "with_bookings", "value": "true" },
+                                { "key": "with_statistics", "value": "true" }
                             ]
                         }
                     }
