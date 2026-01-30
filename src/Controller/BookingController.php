@@ -59,8 +59,8 @@ class BookingController extends AbstractController
         }
 
         // 3. Validar capacidad
-        if ($activity->getBookings()->count() >= $activity->getMaxParticipants()) {
-             return $this->json(['code' => 400, 'description' => 'La actividad está llena'], 400); // 400 as per common practice for business rules, could be 409
+       if ($activity->getClientsSigned() >= $activity->getMaxParticipants()) {
+             return $this->json(['code' => 400, 'description' => 'La actividad está llena'], 400);
         }
 
         // 4. Validar tipo de usuario (Standard vs Premium)
@@ -87,10 +87,6 @@ class BookingController extends AbstractController
         $entityManager->persist($booking);
         $entityManager->flush();
 
-        return $this->json([
-            'id' => (int) $booking->getId(),
-            'activity' => $activity,
-            'client_id' => (int) $client->getId()
-        ], 200, [], ['groups' => 'activity:read']);
+        return $this->json($booking, 200, [], ['groups' => ['booking:read', 'activity:read']]);
     }
 }

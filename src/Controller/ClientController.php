@@ -16,7 +16,7 @@ class ClientController extends AbstractController
     public function show(
         Client $client, 
         Request $request, 
-        ClientRepository $clientRepository
+        ClientMapper $mapper
     ): Response
     {
         // Validar que existe el cliente

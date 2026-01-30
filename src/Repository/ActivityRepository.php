@@ -56,7 +56,9 @@ class ActivityRepository extends ServiceEntityRepository
 
         $query = $qb->getQuery();
         $paginator = new Paginator($query);
-
+        /*Sirve para que el contador de páginas no se líe y cuente 
+        actividades reales en lugar de las filas repetidas que generan 
+        los JOINs en la base de datos. Como un distinct.*/
         $paginator->setUseOutputWalkers(false);
 
         return $paginator;
