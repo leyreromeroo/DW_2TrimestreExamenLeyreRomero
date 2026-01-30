@@ -173,6 +173,60 @@
                         },
                         "url": "http://localhost:8000/bookings"
                     }
+                },
+                {
+                    "name": "ERROR: Límite Semanal Standard (Paso 1)",
+                    "description": "Primera reserva de la semana para el usuario standard (ID:2)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"activity_id\": 1,\n    \"client_id\": 2\n}"
+                        },
+                        "url": "http://localhost:8000/bookings"
+                    }
+                },
+                {
+                    "name": "ERROR: Límite Semanal Standard (Paso 2)",
+                    "description": "Segunda reserva de la semana para el usuario standard (ID:2)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"activity_id\": 2,\n    \"client_id\": 2\n}"
+                        },
+                        "url": "http://localhost:8000/bookings"
+                    }
+                },
+                {
+                    "name": "ERROR: Límite Semanal Standard (EL BLOQUEO)",
+                    "description": "Tercera reserva en la misma semana. Aquí debe saltar el error 400 del repositorio.",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"activity_id\": 5,\n    \"client_id\": 2\n}"
+                        },
+                        "url": "http://localhost:8000/bookings"
+                    }
                 }
             ]
         },
