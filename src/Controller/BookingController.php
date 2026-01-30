@@ -71,11 +71,6 @@ class BookingController extends AbstractController
                 $activity->getDateStart()
             );
 
-            // LOG TEMPORAL PARA DEBUG
-            error_log("DEBUG: Cliente {$client->getId()} tipo {$client->getType()}");
-            error_log("DEBUG: Actividad {$activity->getId()} fecha {$activity->getDateStart()->format('Y-m-d')}");
-            error_log("DEBUG: Reservas en la semana: $weekBookings");
-
             if ($weekBookings >= 2) {
                 return $this->json([
                     'code' => 400, 
