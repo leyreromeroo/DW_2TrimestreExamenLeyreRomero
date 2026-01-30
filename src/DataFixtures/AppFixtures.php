@@ -57,7 +57,7 @@ class AppFixtures extends Fixture
     // --- RESERVAS (Bookings) ---
     // Miguel (Premium) tiene 2 reservas en 2025 y 1 en 2024
     $b1 = new Booking(); $b1->setClient($c1)->setActivity($a1); $manager->persist($b1);
-    $b2 = new Booking(); $b2->setClient($c1)->setActivity($a2); $manager->persist($b2);
+    // $b2 = new Booking(); $b2->setClient($c1)->setActivity($a2); $manager->persist($b2);
     $bOld = new Booking(); $bOld->setClient($c1)->setActivity($aOld); $manager->persist($bOld);
 
     // El Alumno (Standard) ocupa la única plaza de la actividad llena
