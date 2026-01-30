@@ -62,6 +62,33 @@ class AppFixtures extends Fixture
 
     // El Alumno (Standard) ocupa la única plaza de la actividad llena
     $bFull = new Booking(); $bFull->setClient($c2)->setActivity($aFull); $manager->persist($bFull);
+    
+    //Probar fallo apuntado estandar 3 veces a actividades en una semana
+    // Actividad 5: Lunes (misma semana que A1 y A2)
+    $a5 = new Activity();
+    $a5->setType("Spinning")->setMaxParticipants(10)
+    ->setDateStart(new \DateTime('2025-02-10 10:00:00'))
+    ->setDateEnd(new \DateTime('2025-02-10 11:00:00'));
+    $manager->persist($a5);
+
+    // Actividad 6: Miércoles
+    $a6 = new Activity();
+    $a6->setType("BodyPump")->setMaxParticipants(10)
+    ->setDateStart(new \DateTime('2025-02-12 12:00:00'))
+    ->setDateEnd(new \DateTime('2025-02-12 13:00:00'));
+    $manager->persist($a6);
+
+    // Actividad 7: Viernes
+    $a7 = new Activity();
+    $a7->setType("Core")->setMaxParticipants(10)
+    ->setDateStart(new \DateTime('2025-02-14 09:00:00'))
+    ->setDateEnd(new \DateTime('2025-02-14 10:00:00'));
+    $manager->persist($a7);
+
+    // Cliente Standard adicional (para pruebas si es necesario)
+    $c3 = new Client();
+    $c3->setName("Alumno Standard")->setEmail("std@test.com")->setType("standard");
+    $manager->persist($c3);
 
     $manager->flush();
     }
