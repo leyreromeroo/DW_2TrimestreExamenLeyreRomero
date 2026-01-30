@@ -44,6 +44,11 @@ class Activity
         $this->bookings = new ArrayCollection();
     }
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
     #[Groups(['activity:read'])]
     #[SerializedName('clients_signed')]
     public function getClientsSigned(): int {
