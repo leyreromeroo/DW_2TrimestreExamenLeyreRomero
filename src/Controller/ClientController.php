@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Client;
 use App\Repository\ClientRepository;
+use App\Service\ClientMapper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
