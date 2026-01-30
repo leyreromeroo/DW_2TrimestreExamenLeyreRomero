@@ -1,0 +1,34 @@
+{
+	"info": {
+		"name": "4V GYM FINAL API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Activities (Pagination & Filter)",
+			"request": {
+				"method": "GET",
+				"url": "http://localhost:8000/activities?type=Spinning&onlyfree=true&page=1&page_size=10&sort=date&order=desc"
+			}
+		},
+		{
+			"name": "GET Client Details (with Stats & Bookings)",
+			"request": {
+				"method": "GET",
+				"url": "http://localhost:8000/clients/1?with_statistics=true&with_bookings=true"
+			}
+		},
+		{
+			"name": "POST Create Booking",
+			"request": {
+				"method": "POST",
+				"header": [{"key": "Content-Type", "value": "application/json"}],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"activity_id\": 1,\n    \"client_id\": 1\n}"
+				},
+				"url": "http://localhost:8000/bookings"
+			}
+		}
+	]
+}
